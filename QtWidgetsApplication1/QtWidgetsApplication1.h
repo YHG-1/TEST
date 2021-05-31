@@ -15,7 +15,7 @@ public slots:
     void on_btnNum1_clicked();
     void on_btnNum2_clicked();
     void on_btnNum3_clicked();
-    void on_btnNum4_clicked(); 
+    void on_btnNum4_clicked();
     void on_btnNum5_clicked();
     void on_btnNum6_clicked();
     void on_btnNum7_clicked();
@@ -53,16 +53,15 @@ private:
     //연산 부분 함수
     void calc();
     Ui::QtWidgetsApplication1Class ui;
-    QString mathString;
-    QString operString;
-    QString matText;
+    QString sMathString;
+    QString sOperString;
+    QString sMatText;
     QString calText;
     double _dResult;
     double _dNum;
     char c;
 
     // 연산자 저장 변수
-    char oper = '^';
+    char _cOper = '^';
     bool bEquel = false;
-    bool bNUmber = false;
 };
