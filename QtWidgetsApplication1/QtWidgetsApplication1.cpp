@@ -3,7 +3,7 @@
 QtWidgetsApplication1::QtWidgetsApplication1( QWidget* parent )
     : QMainWindow( parent )
 {
-    ui.setupUi( this );
+    ui.setupUi( this ); 
     on_btnC_clicked();
 }
 void QtWidgetsApplication1::calc()

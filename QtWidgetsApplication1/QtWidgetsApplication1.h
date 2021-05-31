@@ -15,7 +15,7 @@ public slots:
     void on_btnNum1_clicked();
     void on_btnNum2_clicked();
     void on_btnNum3_clicked();
-    void on_btnNum4_clicked();
+    void on_btnNum4_clicked(); 
     void on_btnNum5_clicked();
     void on_btnNum6_clicked();
     void on_btnNum7_clicked();
