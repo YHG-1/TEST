@@ -10,29 +10,29 @@
  {
      QLabel* pMath = this->findChild<QLabel*>( "txtMath" );
      QLabel* pCal = this->findChild <QLabel*>( "txtCal" );
-     matText = pMath->text();
-     _dNum = matText.toDouble();
-     if( oper == '^' )
+     sMatText = pMath->text();
+     _dNum = sMatText.toDouble();
+     if( _cOper == '^' )
      {
          _dResult = _dNum;
-         calText = matText;
+         calText = sMatText;
      }
-     else if( oper == '+' )
+     else if( _cOper == '+' )
      {
          _dResult += _dNum;
          calText = QString::number( _dResult );
      }
-     else if( oper == '-' )
+     else if( _cOper == '-' )
      {
          _dResult -= _dNum;
          calText = QString::number( _dResult );
      }
-     else if( oper == '*' )
+     else if( _cOper == '*' )
      {
          _dResult *= _dNum;
          calText = QString::number( _dResult );
      }
-     else if( oper == '/' )
+     else if( _cOper == '/' )
      {
          _dResult /= _dNum;
      }
@@ -45,30 +45,30 @@
      //결과값 출력 이후, txtMatg, result, txtCal 모두 초기화
      if( bEquel == true )
      {
-         pMath->setText( matText );
+         pMath->setText( sMatText );
          _dResult = 0;
-         oper = '^';
+         _cOper = '^';
          calText.clear();
          pCal->setText( calText );
          bEquel = false;
      }
-     matText = pMath->text();
-     matText = matText + c;
-     pMath->setText( matText );
+     sMatText = pMath->text();
+     sMatText = sMatText + c;
+     pMath->setText( sMatText );
  }
  void QtWidgetsApplication1::operFunction( QString operString )
  {
      if( bEquel == true )
      {
-         oper = '^';
+         _cOper = '^';
          bEquel = false;
      }
      QLabel* pMath = this->findChild<QLabel*>( "txtMath" );
      QLabel* pCal = this->findChild <QLabel*>( "txtCal" );
-     matText = pMath->text();
-     _dNum = matText.toDouble();
+     sMatText = pMath->text();
+     _dNum = sMatText.toDouble();
      //입력한 연산자 변경할때
-     if( matText.isEmpty() == true )
+     if( sMatText.isEmpty() == true )
      {
          calText = QString::number( _dResult );
          calText.append( operString );
@@ -78,8 +78,8 @@
      calc();
      calText.append( operString );
      pCal->setText( calText );
-     matText.clear();
-     pMath->setText( matText );
+     sMatText.clear();
+     pMath->setText( sMatText );
  }
  void QtWidgetsApplication1::on_btnNum1_clicked()
  {
@@ -134,122 +134,122 @@
  void QtWidgetsApplication1::on_btnPoint_clicked()
  {
      QLabel* pMath = this->findChild<QLabel*>( "txtMath" );
-     matText = pMath->text();
-     bool bDot = matText.contains( ".", Qt::CaseInsensitive );
-     if( matText.isEmpty() == false )
+     sMatText = pMath->text();
+     bool bDot = sMatText.contains( ".", Qt::CaseInsensitive );
+     if( sMatText.isEmpty() == false )
      {
          //matText내 .가 없는지 확인
          if( bDot == false )
-             matText.append( '.' );
+             sMatText.append( '.' );
      }
      else
      {
-         matText.append( '0' );
-         matText.append( '.' );
+         sMatText.append( '0' );
+         sMatText.append( '.' );
      }
-     pMath->setText( matText );
+     pMath->setText( sMatText );
  }
  void QtWidgetsApplication1::on_btnCe_clicked()
  {
      QLabel* pMath = this->findChild<QLabel*>( "txtMath" );
-     matText = pMath->text();
-     matText.clear();
-     pMath->setText( matText );
+     sMatText = pMath->text();
+     sMatText.clear();
+     pMath->setText( sMatText );
  }
  void QtWidgetsApplication1::on_btnC_clicked()
  {
      QLabel* pMath = this->findChild<QLabel*>( "txtMath" );
      QLabel* pCal = this->findChild <QLabel*>( "txtCal" );
-     matText = pMath->text();
+     sMatText = pMath->text();
      calText = pMath->text();
-     mathString.clear();
-     matText.clear();
+     sMathString.clear();
+     sMatText.clear();
      calText.clear();
-     pMath->setText( matText );
+     pMath->setText( sMatText );
      pCal->setText( calText );
      _dResult = 0;
      _dNum = 0;
-     oper = '^';
+     _cOper = '^';
      if( bEquel == true )
      {
-         oper = '^';
+         _cOper = '^';
          bEquel = false;
      }
  }
  void QtWidgetsApplication1::on_btnErase_clicked()
  {
      QLabel* pMath = this->findChild<QLabel*>( "txtMath" );
-     matText = pMath->text();
-     matText.chop( 1 );
-     pMath->setText( matText );
+     sMatText = pMath->text();
+     sMatText.chop( 1 );
+     pMath->setText( sMatText );
  }
  void QtWidgetsApplication1::on_btnAdd_clicked()
  {
-     operString = " + ";
-     operFunction( operString );
-     oper = '+';
+     sOperString = " + ";
+     operFunction( sOperString );
+     _cOper = '+';
  }
  void QtWidgetsApplication1::on_btnSub_clicked()
  {
-     operString = " - ";
-     operFunction( operString );
-     oper = '-';
+     sOperString = " - ";
+     operFunction( sOperString );
+     _cOper = '-';
  }
  void QtWidgetsApplication1::on_btnMul_clicked()
  {
-     operString = " * ";
-     operFunction( operString );
-     oper = '*';
+     sOperString = " * ";
+     operFunction( sOperString );
+     _cOper = '*';
  }
  void QtWidgetsApplication1::on_btnDivison_clicked()
  {
-     operString = " / ";
-     operFunction( operString );
-     oper = '/';
+     sOperString = " / ";
+     operFunction( sOperString );
+     _cOper = '/';
  }
  void QtWidgetsApplication1::on_btnEnter_clicked()
  {
      QLabel* pMath = this->findChild<QLabel*>( "txtMath" );
      QLabel* pCal = this->findChild <QLabel*>( "txtCal" );
-     matText = pMath->text();
+     sMatText = pMath->text();
      if( bEquel == false )
      {
-         mathString.clear();
-         mathString.append( matText );
+         sMathString.clear();
+         sMathString.append( sMatText );
          bEquel = true;
      }
      else
      {
-         if( oper != '^' )
+         if( _cOper != '^' )
          {
              calText.append( QString::number( _dResult ) );
              calText.append( " " );
-             calText.append( oper );
+             calText.append( _cOper );
              calText.append( " " );
          }
      }
-     if( matText.isEmpty() == true )
-         mathString = QString::number( _dResult );
-     _dNum = mathString.toDouble();
-     if( oper == '^' )
-         _dResult = matText.toDouble();
+     if( sMatText.isEmpty() == true )
+         sMathString = QString::number( _dResult );
+     _dNum = sMathString.toDouble();
+     if( _cOper == '^' )
+         _dResult = sMatText.toDouble();
      else
      {
-         if( oper == '-' )
+         if( _cOper == '-' )
              _dResult -= _dNum;
-         else if( oper == '+' )
+         else if( _cOper == '+' )
              _dResult += _dNum;
-         else if( oper == '*' )
+         else if( _cOper == '*' )
              _dResult *= _dNum;
-         else if( oper == '/' )
+         else if( _cOper == '/' )
              _dResult /= _dNum;
      }
-     calText.append( mathString );
+     calText.append( sMathString );
      calText.append( " = " );
      pCal->setText( calText );
      pMath->setText( QString::number( _dResult ) );
      calText.clear();
-     matText.clear();
+     sMatText.clear();
  }
  void QtWidgetsApplication1::on_btnSign_clicked()
  {
@@ -257,29 +257,29 @@
      QLabel* pCal = this->findChild <QLabel*>( "txtCal" );
      if( bEquel == true )
      {
-         matText = pMath->text();
-         oper = '^';
+         sMatText = pMath->text();
+         _cOper = '^';
          calText.clear();
          calText.append( calText );
          bEquel = false;
      }
-     if( matText.isEmpty() == true )
+     if( sMatText.isEmpty() == true )
      {
-         matText = QString::number( _dResult );
-         if( matText[ 0 ] != '-' )
-             matText = "-" + matText;
+         sMatText = QString::number( _dResult );
+         if( sMatText[ 0 ] != '-' )
+             sMatText = "-" + sMatText;
          else
-             matText.remove( 0, 1 );
+             sMatText.remove( 0, 1 );
      }
      else
      {
-         if( matText[ 0 ] != '-' )
-             matText = "-" + matText;
+         if( sMatText[ 0 ] != '-' )
+             sMatText = "-" + sMatText;
          else
-             matText.remove( 0, 1 );
+             sMatText.remove( 0, 1 );
      }
-     pMath->setText( matText );
-     _dNum = matText.toDouble();
+     pMath->setText( sMatText );
+     _dNum = sMatText.toDouble();
  }
  void QtWidgetsApplication1::keyPressEvent( QKeyEvent* pe )
  {
