@@ -8,9 +8,9 @@ QtWidgetsApplication1::QtWidgetsApplication1( QWidget* parent )
 }
 void QtWidgetsApplication1::calc()
 {
-    QLabel* pMath = this->findChild<QLabel*>( "txtMath" );
+    QLabel* pMaths = this->findChild<QLabel*>( "txtMath" );
     QLabel* pCal = this->findChild <QLabel*>( "txtCal" );
-    matText = pMath->text();
+    matText = pMaths->text();
     _dNum = matText.toDouble();
     if( oper == '^' )
     {
